@@ -2,7 +2,7 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-|Gafsi Amene| |
+|| |
 |Zeitoun Fawzia | |
 |Obaid Lina | |
 
