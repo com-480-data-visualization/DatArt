@@ -2,9 +2,8 @@
 
 | Student's name | SCIPER |
 | -------------- | ------ |
-|| |
 |Fawzia Zeitoun|377613|
-|Lina Obaid| |
+|Lina Obaid|382533|
 
 [Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
 
@@ -12,35 +11,41 @@
 
 **10% of the final grade**
 
-This is a preliminary milestone to let you set up goals for your final project and assess the feasibility of your ideas.
-Please, fill the following sections about your project.
+### Datasets
+Our project uses two main datasets sourced from Kaggle, both originating from BoardGameGeek (BGG), the largest online platform for board game enthusiasts.
 
-*(max. 2000 characters per section)*
+#### Dataset 1: [BoardGameGeek Reviews](https://www.kaggle.com/datasets/jvanelteren/boardgamegeek-reviews).
+This dataset contains detailed metadata for thousands of board games, including complexity, ratings, player counts, categories, expansions, and more. The data was scraped from BGG at multiple points in time. We will focus on the data from 2022 and 2025.
 
-### Dataset
 
-> Find a dataset (or multiple) that you will explore. Assess the quality of the data it contains and how much preprocessing / data-cleaning it will require before tackling visualization. We recommend using a standard dataset as this course is not about scraping nor data processing.
->
-> Hint: some good pointers for finding quality publicly available datasets ([Google dataset search](https://datasetsearch.research.google.com/), [Kaggle](https://www.kaggle.com/datasets), [OpenSwissData](https://opendata.swiss/en/), [SNAP](https://snap.stanford.edu/data/) and [FiveThirtyEight](https://data.fivethirtyeight.com/)), you could use also the DataSets proposed by the ENAC (see the Announcements section on Zulip).
+#### Dataset 2: [Board Game Ratings by Country](https://www.kaggle.com/datasets/thedevastator/board-game-ratings-by-country).
+This dataset provides a snapshot of the board games on BGG in 2019. It provides the same metadata as dataset 1. However, it also includes the country of origin of the users with ratings.
+
 
 ### Problematic
 
-> Frame the general topic of your visualization and the main axis that you want to develop.
-> - What am I trying to show with my visualization?
-> - Think of an overview for the project, your motivation, and the target audience.
+Board games are more than entertainment; they are culture. From casual party games to deep strategic ones, the games we choose reflect how we connect, compete, and collaborate.
+This project explores how board games have evolved across time and cultures. We focus on three distinct years (2019, 2022, and 2025) combining detailed metadata and user ratings from around the world.
+
+Our goal is to analyze how board game design, complexity, popularity, and player engagement have changed globally. Key questions include:
+* **Regional preferences**: Which countries prefer heavier, more complex games? Which lean toward lighter ones? What are the most popular categories in each country?
+* **Temporal trends**: How have the game categories and settings shifted between 2019 and 2025? How did features like player count, playtime, or age suitability change over the years?
+* **Analysis through global events**: With data from before and after the COVID-19 pandemic, as well as current-day data, did the pandemic influence game publishing, solo play, and category popularity? If so, how?
+* **The anatomy of great games**: Are there consistent patterns or attributes that define or correlate with top-rated games?
+
+By combining geographic insights with long-term trends and gameplay characteristics, our project aims to offer a multidimensional perspective on how board games, and the communities that play them, are evolving across the globe.
+
+This project is intended for a broad audience, including data visualization enthusiasts, game designers, cultural researchers, and casual board gamers who are curious about global trends in play. Through interactive storytelling and visual analysis, we aim to make the data engaging and accessible to both technical and non-technical users.
+
 
 ### Exploratory Data Analysis
-
-> Pre-processing of the data set you chose
-> - Show some basic statistics and get insights about the data
+The preprocessing steps, dataset details, and exploratory data analysis are documented in the file [milestone1-eda.ipynb](./milestone1_eda.ipynb).
 
 ### Related work
+To our knowledge, we found no existing website or platform that provides a comprehensive, interactive visualization of global board game trends across time and geography. While some visualizations exist, such as individual graphs shared by users on BoardGameGeek (BGG) forums, these tend to be isolated and focused on only one aspect of the data. Most existing analyses we came across are limited to exploratory data analysis on platforms like Kaggle, such as the one [here](https://www.kaggle.com/code/jvanelteren/exploring-the-13m-reviews-bgg-dataset). They do not incorporate the full geographic or temporal perspective across the years.
 
+For inspiration, we looked at several past projects of this course. The two projects that stood out to us were [GreenAce]( https://greenace.fdumoncel.ch/) and [Formula1]( https://formula1viz.altervista.org/index.html). We were particularly drawn to their use of interactive maps, which align with the global aspect of our project. Both websites also have a gamified feel, which we plan to integrate into our own website.
 
-> - What others have already done with the data?
-> - Why is your approach original?
-> - What source of inspiration do you take? Visualizations that you found on other websites or magazines (might be unrelated to your data).
-> - In case you are using a dataset that you have already explored in another context (ML or ADA course, semester project...), you are required to share the report of that work to outline the differences with the submission for this class.
 
 ## Milestone 2 (18th April, 5pm)
 
