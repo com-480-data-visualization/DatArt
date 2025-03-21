@@ -33,9 +33,9 @@ Our goal is to analyze how board game design, complexity, popularity, and player
 * **Analysis through global events**: With data from before and after the COVID-19 pandemic, as well as current-day data, did the pandemic influence game publishing, solo play, and category popularity? If so, how?
 * **The anatomy of great games**: Are there consistent patterns or attributes that define or correlate with top-rated games?
 
-By combining geographic insights with long-term trends and gameplay characteristics, our project aims to offer a multidimensional perspective on how board games, and the communities that play them, are evolving across the globe.
+By combining geographic insights with temporal trends and gameplay characteristics, our project aims to offer a multidimensional perspective on how board games, and the communities that play them, are evolving across the globe.
 
-This project is intended for a broad audience, including data visualization enthusiasts, game designers, cultural researchers, and casual board gamers who are curious about global trends in play. Through interactive storytelling and visual analysis, we aim to make the data engaging and accessible to both technical and non-technical users.
+This project is intended for a broad audience, including data visualization enthusiasts, game designers, cultural researchers, and casual board gamers who are curious about global trends in play. Through interactive storytelling, we aim to make the data engaging and accessible to both technical and non-technical users.
 
 
 ### Exploratory Data Analysis
