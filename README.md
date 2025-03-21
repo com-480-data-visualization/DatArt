@@ -33,16 +33,16 @@ Our goal is to analyze how board game design, complexity, popularity, and player
 * **Analysis through global events**: With data from before and after the COVID-19 pandemic, as well as current-day data, did the pandemic influence game publishing, solo play, and category popularity? If so, how?
 * **The anatomy of great games**: Are there consistent patterns or attributes that define or correlate with top-rated games?
 
-By combining geographic insights with long-term trends and gameplay characteristics, our project aims to offer a multidimensional perspective on how board games, and the communities that play them, are evolving across the globe.
+By combining geographic insights with temporal trends and gameplay characteristics, our project aims to offer a multidimensional perspective on how board games, and the communities that play them, are evolving across the globe.
 
-This project is intended for a broad audience, including data visualization enthusiasts, game designers, cultural researchers, and casual board gamers who are curious about global trends in play. Through interactive storytelling and visual analysis, we aim to make the data engaging and accessible to both technical and non-technical users.
+This project is intended for a broad audience, including data visualization enthusiasts, game designers, cultural researchers, and casual board gamers who are curious about global trends in play. Through interactive storytelling, we aim to make the data engaging and accessible to both technical and non-technical users.
 
 
 ### Exploratory Data Analysis
 The preprocessing steps, dataset details, and exploratory data analysis are documented in the file [milestone1-eda.ipynb](./milestone1_eda.ipynb).
 
 ### Related work
-To our knowledge, we found no existing website or platform that provides a comprehensive, interactive visualization of global board game trends across time and geography. While some visualizations exist, such as individual graphs shared by users on BoardGameGeek (BGG) forums, these tend to be isolated and focused on only one aspect of the data. Most existing analyses we came across are limited to exploratory data analysis on platforms like Kaggle, such as the one [here](https://www.kaggle.com/code/jvanelteren/exploring-the-13m-reviews-bgg-dataset). They do not incorporate the full geographic or temporal perspective across the years.
+To our knowledge, we found no existing website or platform that provides a comprehensive, interactive visualization of global board game trends across time and geography. While some visualizations exist, such as individual graphs shared by users on BGG forums, these tend to be isolated and focused on only one aspect of the data. Most existing analyses we came across are limited to exploratory data analysis on platforms like Kaggle, such as the one [here](https://www.kaggle.com/code/jvanelteren/exploring-the-13m-reviews-bgg-dataset). They do not incorporate the full geographic or temporal perspective across the years.
 
 For inspiration, we looked at several past projects of this course. The two projects that stood out to us were [GreenAce]( https://greenace.fdumoncel.ch/) and [Formula1]( https://formula1viz.altervista.org/index.html). We were particularly drawn to their use of interactive maps, which align with the global aspect of our project. Both websites also have a gamified feel, which we plan to integrate into our own website.
 
