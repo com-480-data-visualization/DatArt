@@ -45,7 +45,7 @@ Key steps included renaming columns for consistency, removing unnecessary or inv
 The notebook contains graphs and visualizations exploring board game complexity, player count trends, game categories, and how these aspects have changed over time across the 2019, 2022, and 2025 datasets.
 
 
-### Related work
+### Related Work
 To our knowledge, we found no existing website or platform that provides a comprehensive, interactive visualization of global board game trends across time and geography. While some visualizations exist, such as individual graphs shared by users on BGG forums, these tend to be isolated and focused on only one aspect of the data. Most existing analyses we came across are limited to exploratory data analysis on platforms like Kaggle, such as the one [here](https://www.kaggle.com/code/jvanelteren/exploring-the-13m-reviews-bgg-dataset). They do not incorporate the full geographic or temporal perspective across the years.
 
 For inspiration, we looked at several past projects of this course. The two projects that stood out to us were [GreenAce]( https://greenace.fdumoncel.ch/) and [Formula1]( https://formula1viz.altervista.org/index.html). We were particularly drawn to their use of interactive maps, which align with the global aspect of our project. Both websites also have a gamified feel, which we plan to integrate into our own website.
