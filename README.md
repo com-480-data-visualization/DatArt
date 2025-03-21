@@ -40,6 +40,9 @@ This project is intended for a broad audience, including data visualization enth
 
 ### Exploratory Data Analysis
 The preprocessing steps, dataset details, and exploratory data analysis are documented in the file [milestone1-eda.ipynb](./milestone1_eda.ipynb).
+Key steps included renaming columns for consistency, removing unnecessary or invalid entries (e.g., missing ranks or empty categories), and converting stringified lists into proper Python lists. Only relevant features like name, rank, usersrated, and boardgamecategory were retained. User ratings were merged with country data after cleaning and standardizing the country field. These preprocessing steps ensured clean, consistent data for analysis and visualization.
+The notebook contains graphs and visualizations exploring board game complexity, player count trends, game categories, and how these aspects have changed over time across the 2019, 2022, and 2025 datasets.
+
 
 ### Related work
 To our knowledge, we found no existing website or platform that provides a comprehensive, interactive visualization of global board game trends across time and geography. While some visualizations exist, such as individual graphs shared by users on BGG forums, these tend to be isolated and focused on only one aspect of the data. Most existing analyses we came across are limited to exploratory data analysis on platforms like Kaggle, such as the one [here](https://www.kaggle.com/code/jvanelteren/exploring-the-13m-reviews-bgg-dataset). They do not incorporate the full geographic or temporal perspective across the years.
