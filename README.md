@@ -55,8 +55,9 @@ For inspiration, we looked at several past projects of this course. The two proj
 
 **10% of the final grade**
 
-You can find the report [here](./milestones/milestone2/Milestone 2.pdf).
-You can access the skeleton website here.
+You can find the report [here](./milestones/milestone2/Milestone%202.pdf).
+
+You can access the skeleton website [here](https://com-480-data-visualization.github.io/DatArt/).
 
 ## Milestone 3 (30th May, 5pm)
 
