@@ -55,6 +55,8 @@ For inspiration, we looked at several past projects of this course. The two proj
 
 **10% of the final grade**
 
+You can find the report [here](./milestones/milestone2/Milestone 2.pdf).
+You can access the skeleton website here.
 
 ## Milestone 3 (30th May, 5pm)
 
