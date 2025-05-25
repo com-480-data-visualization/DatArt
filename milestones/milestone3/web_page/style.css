@@ -119,6 +119,7 @@ a:focus {
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 .background-wrapper::before {
   content: "";
@@ -239,16 +240,23 @@ a:focus {
   display: flex;
   gap: 1rem;
   align-items: center;
+  /* width: 928px; */
 }
 
 #map {
   width: 100%;
   height: 800px;
+  width: 80%;
+  height: 500px;
+  margin: auto;
+  border: 1px solid #ccc;
 }
 
 .data__section {
   display: flex;
   justify-content: center;
+  margin: 16px 0;
+  width: 70rem;
 }
 
 .info-panel {
@@ -257,4 +265,5 @@ a:focus {
   border-radius: 5px;
   display: none;
   height: fit-content;
+  width: 200px;
 }
