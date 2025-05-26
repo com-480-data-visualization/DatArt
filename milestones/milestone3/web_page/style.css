@@ -75,7 +75,7 @@ a:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #003049;
+  background-color: var(--navy);
   padding: 1rem 2rem;
   color: var(--cream);
   position: sticky;

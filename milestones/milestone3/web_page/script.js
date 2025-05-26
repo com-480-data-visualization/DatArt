@@ -50,7 +50,6 @@ const chart = async () => {
   const marginTop = 46;
   const height = width / 2 + marginTop;
 
-  // Load the world map
   const world = await d3.json(
     "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
   );
@@ -70,9 +69,7 @@ const chart = async () => {
   );
   const path = d3.geoPath(projection);
 
-  // Load complexity data
   const complexityData = await d3.json("./data/complexity_by_country.json");
-
   const valuemap = new Map(
     Object.entries(complexityData).map(([country, value]) => [
       country,
@@ -80,27 +77,36 @@ const chart = async () => {
     ])
   );
 
-  // Create color scale
-  const color = d3.scaleSequential(
-    d3.extent(Array.from(valuemap.values())),
-    d3.interpolateYlGnBu
-  );
+  const values = Array.from(valuemap.values());
+  const min = Math.min(...values);
+  const max = Math.max(...values);
 
-  // Create SVG
+  const color = d3
+    .scaleLinear()
+    .domain([min, min + (max - min) * 0.4, max])
+    .range(["#f7ecdc", "#fcbf49", "#f77f00"]);
+
   const svg = d3
     .create("svg")
     .attr("height", height)
     .attr("viewBox", [0, 0, width, height])
-    .attr("style", "width: 100%; height: auto; display: block; margin: auto;");
+    .attr(
+      "style",
+      "width: 100%; height: auto; display: block; margin: auto; background-color: var(--navy);"
+    );
 
-  // Background
   svg
     .append("rect")
     .attr("width", width)
     .attr("height", height)
-    .attr("fill", "var(--cream)");
+    .attr("fill", "var(--navy)");
 
-  // Countries
+  svg
+    .append("rect")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("fill", "rgba(0, 0, 0, 0.2)");
+
   svg
     .append("g")
     .selectAll("path")
@@ -108,7 +114,7 @@ const chart = async () => {
     .join("path")
     .attr("fill", (d) => {
       const val = valuemap.get(d.properties.name);
-      return val != null ? color(val) : "#ccc"; // Gray if no data
+      return val != null ? color(val) : "#f7ecdc";
     })
     .attr("d", path)
     .append("title")
@@ -119,20 +125,18 @@ const chart = async () => {
       }`;
     });
 
-  // Country borders
   svg
     .append("path")
     .datum(countrymesh)
     .attr("fill", "none")
-    .attr("stroke", "white")
+    .attr("stroke", "#fcbf49")
+    .attr("stroke-width", 0.5)
     .attr("d", path);
 
-  // Add legend
   const legendWidth = 300;
-  const legendHeight = 10;
+  const legendHeight = 5;
 
   const defs = svg.append("defs");
-
   const linearGradient = defs
     .append("linearGradient")
     .attr("id", "legend-gradient");
@@ -142,51 +146,59 @@ const chart = async () => {
     .data(d3.ticks(0, 1, 10))
     .join("stop")
     .attr("offset", (d) => `${d * 100}%`)
-    .attr("stop-color", (d) =>
-      color(d3.interpolateNumber(...color.domain())(d))
-    );
+    .attr("stop-color", (d) => color(min + d * (max - min)));
+
+  linearGradient
+    .selectAll("stop")
+    .data(d3.range(0, 1.01, 0.1))
+    .join("stop")
+    .attr("offset", (d) => `${d * 100}%`)
+    .attr("stop-color", (d) => color(min + d * (max - min)));
 
   svg
     .append("rect")
     .attr("x", 30)
-    .attr("y", height - 40)
+    .attr("y", height - 20)
     .attr("width", legendWidth)
     .attr("height", legendHeight)
-    .style("fill", "url(#legend-gradient)");
+    .attr("rx", 6)
+    .attr("fill", "url(#legend-gradient)")
+    .attr("stroke", "#fcbf49")
+    .attr("stroke-width", 1);
 
-  // Add scale labels
   const legendScale = d3
     .scaleLinear()
-    .domain(color.domain())
+    .domain([min, max])
     .range([0, legendWidth]);
 
   const legendAxis = d3
     .axisBottom(legendScale)
-    .ticks(5)
+    .ticks(6)
     .tickFormat(d3.format(".2f"));
 
   svg
     .append("g")
-    .attr("transform", `translate(30, ${height - 30})`)
-    .call(legendAxis);
+    .attr("transform", `translate(30, ${height - 20})`)
+    .call(legendAxis)
+    .call((g) => g.selectAll("text").style("fill", "#f7ecdc"))
+    .call((g) => g.selectAll("path, line").style("stroke", "#f7ecdc"));
 
   svg
     .append("text")
     .attr("x", 30)
-    .attr("y", height - 50)
-    .attr("fill", "black")
+    .attr("y", height - 30)
+    .attr("fill", "#fcbf49")
     .attr("font-weight", "bold")
     .text("Average Game Complexity (2019, 2022, 2025)");
 
   return svg.node();
 };
 
-// Add to page
 chart().then((svg) => {
   document.getElementById("world_heat_map").appendChild(svg);
 });
 
-// correlations
+////////////// correlations ////////////////
 
 const generate_correlation = async () => {
   const margin = { top: 40, right: 30, bottom: 80, left: 50 };
@@ -196,7 +208,10 @@ const generate_correlation = async () => {
   const svg = d3
     .create("svg")
     .attr("height", height + margin.top + margin.bottom)
-    .attr("style", "width: 100%; height: auto; display: block; margin: auto;")
+    .attr(
+      "style",
+      "width: 100%; height: auto; display: block; margin: auto; background-color: var(--navy);"
+    )
     .attr("viewBox", [
       0,
       0,
@@ -208,20 +223,32 @@ const generate_correlation = async () => {
     .append("g")
     .attr("transform", `translate(${margin.left},${margin.top})`);
 
-  // Add cream background
   svg
     .append("rect")
     .attr("x", 0)
     .attr("y", 0)
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .attr("fill", "var(--cream)")
+    .attr("fill", "var(--navy)")
+    .lower();
+  svg
+    .append("rect")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("fill", "rgba(0, 0, 0, 0.2)");
+
+  svg
+    .append("rect")
+    .attr("x", 0)
+    .attr("y", 0)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("fill", "rgba(0, 0, 0, 0.2)")
     .lower();
 
   d3.json("./data/correlations.json").then((data) => {
     data.forEach((d) => {
       d.correlation = +d.correlation;
-
       d.label = featureLabels[d.feature] || d.feature;
     });
 
@@ -232,6 +259,7 @@ const generate_correlation = async () => {
       .padding(0.4);
 
     const y = d3.scaleLinear().domain([-1, 1]).range([height, 0]);
+
     g.append("line")
       .attr("x1", 0)
       .attr("x2", width)
@@ -239,19 +267,21 @@ const generate_correlation = async () => {
       .attr("y2", y(0))
       .attr("stroke", "#999")
       .attr("stroke-width", 1)
-      .attr("stroke-dasharray", "3,2"); // Optional: dashed line
+      .attr("stroke-dasharray", "3,2");
 
-    // Axes
     g.append("g")
       .attr("transform", `translate(0, ${height})`)
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "rotate(-40)")
-      .style("text-anchor", "end");
+      .style("text-anchor", "end")
+      .style("fill", "var(--text-light)");
 
-    g.append("g").call(d3.axisLeft(y));
+    g.append("g")
+      .call(d3.axisLeft(y))
+      .selectAll("text")
+      .style("fill", "var(--text-light)");
 
-    // Lollipop lines
     g.selectAll("line.stem")
       .data(data)
       .enter()
@@ -261,10 +291,9 @@ const generate_correlation = async () => {
       .attr("x2", (d) => x(d.label) + x.bandwidth() / 2)
       .attr("y1", y(0))
       .attr("y2", (d) => y(d.correlation))
-      .attr("stroke", "steelblue")
+      .attr("stroke", "var(--orange)")
       .attr("stroke-width", 2);
 
-    // Lollipop circles
     g.selectAll("circle")
       .data(data)
       .enter()
@@ -272,19 +301,10 @@ const generate_correlation = async () => {
       .attr("cx", (d) => x(d.label) + x.bandwidth() / 2)
       .attr("cy", (d) => y(d.correlation))
       .attr("r", 5)
-      .attr("fill", "white")
-      .attr("stroke", "steelblue")
+      .attr("fill", "var(--cream)")
+      .attr("stroke", "var(--orange)")
       .attr("stroke-width", 2);
 
-    // Title
-    svg
-      .append("text")
-      .attr("x", margin.left)
-      .attr("y", 20)
-      .text("Feature Correlation with Bayes Average Rating")
-      .attr("font-weight", "bold");
-
-    // Y-axis label
     svg
       .append("text")
       .attr("transform", "rotate(-90)")
@@ -292,8 +312,10 @@ const generate_correlation = async () => {
       .attr("y", 15)
       .attr("text-anchor", "middle")
       .attr("class", "axis-label")
+      .attr("fill", "var(--text-light)")
       .text("correlation");
   });
+
   return svg.node();
 };
 
