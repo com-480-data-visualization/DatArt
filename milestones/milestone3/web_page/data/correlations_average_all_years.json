@@ -1,0 +1,18 @@
+[
+  {
+    "feature":"trading",
+    "correlation":0.6163
+  },
+  {
+    "feature":"averageweight",
+    "correlation":0.2883
+  },
+  {
+    "feature":"minplaytime",
+    "correlation":0.004
+  },
+  {
+    "feature":"minplayers",
+    "correlation":-0.0789
+  }
+]
