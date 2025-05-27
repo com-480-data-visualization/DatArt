@@ -2,114 +2,123 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game board insights</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Caudex:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <script src="favorites.js" defer></script>
+    <script src="temporal.js" defer></script>
+    <script src="categories.js" defer></script>
 </head>
 
 <body>
     <nav class="navbar">
         <ul class="navbar__links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#global-favorites">Global Favorites</a></li>
-            <li><a href="#temporal-trends">Temporal Trends</a></li>
-            <li><a href="#world-tour">World Tour</a></li>
-            <li><a href="#success">Successful Games</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#global-favorites">Global Favorites</a></li>
+        <li><a href="#temporal-trends">Temporal Trends</a></li>
+        <li><a href="#world-tour">World Tour</a></li>
+        <li><a href="#success">Successful Games</a></li>
         </ul>
     </nav>
-       
-    <div class="background-wrapper">
 
+    <div class="background-wrapper">
         <header class="site-header">
-            <div class="site-header__overlay">
-                <div class="site-header__content">
-                    <h1 class="site-header__title orange__color">The World of Board Games</h1>
-                    <p class="site-header__subtitle">
-                        Exploring global trends, game genres, and how play has evolved over time.
-                    </p>
+        <div class="site-header__content">
+            <h1 class="site-header__title">
+            <span class="line line-1">BEYOND</span>
+            <span class="line line-2">THE</span>
+            <span class="line line-3">BOARD</span>
+            </h1>
+            <p class="site-header__subtitle">
+            Exploring global trends, game genres, and how play has evolved over time.
+            </p>
+        </div>
+        </header>
+
+        <main class="main-content">
+        <section id="about" class="data__section">
+            <div class="flex-display">
+            <h2 class="card__title">About</h2>
+            <p class="card__desc">Exploring how board games, and the communities that play them, are evolving across time and geography.</p>
+            </div>
+        </section>
+
+        <section id="global-favorites" class="data__section">
+            <div class="section-header">
+            <h2 class="card__title">Global Favorites</h2>
+            <p class="card__desc">Discover the most popular board games for 2019, 2022, and 2025.</p>
+            <label for="yearSelector">Choose a year:</label>
+            <select id="yearSelector">
+                <option value="2019">2019</option>
+                <option value="2022">2022</option>
+                <option value="2025">2025</option>
+            </select>
+            </div>
+            <div id="favoritesContainer" class="card-grid"></div>
+        </section>
+
+        <section id="temporal-trends" class="data__section">
+            <div class="flex-display">
+                <h2 class="card__title">Temporal Trends</h2>
+                <p class="card__desc">Watch categories rise and fall between 2019 and 2025 with an animated bar chart race.</p>
+                <div class="graph-container">
+                    <div id="category-race"></div>
+                    <div id="tooltip-categ"></div>
+                </div>
+                <div class="property-section">
+                    <label for="propertySelector">Select a property:</label>
+                    <select id="propertySelector">
+                    <option value="Average Weight">Average Complexity</option>
+                    <option value="Average Minimum Players">Minimum Players</option>
+                    <option value="Solo Playable (%)">Solo Playability (%)</option>
+                    <option value="Average Minimum Age">Minimum Age</option>
+                    </select>
+                <div id="line-chart-container">
+                    <svg></svg>
+                </div>
+                <div id="tooltip"></div>
                 </div>
             </div>
-        </header>
-        <main class="main-content">
-    
-            <section id="about" class="data__section">
-                <div class="flex-display">
-                    <h2 class="card__title">About</h2>
-                    <p class="card__desc">Exploring how board games, and the communities that play them, are evolving across time and geography.</p>
-                </div>
-            </section>
-        
-            <section id="global-favorites" class="data__section">
-                <div class="flex-display">
-                    <h2 class="card__title">Global Favorites</h2>
-                    <p class="card__desc">Discover the most popular board games for 2019, 2022, and 2025.</p>
-                    <div class="graph-container">
-                    <img src="./assets/global favs.png" alt="Global Favs" class="small-img">
-                    </div>
-                </div>
-            </section>
-        
-            <section id="temporal-trends" class="data__section">
-        
-                <div class="flex-display">
-                    <h2 class="card__title">Temporal Trends</h2>
-                    <p class="card__desc">Watch categories rise and fall between 2019 and 2025 with an animated bar chart race.</p>
-                    <div class="graph-container">
-                    <img src="./assets/change-categ-2.png" alt="Category Popularity" class="small-img">   
-                    </div>
-        
-                <div class="flex-display">
-                    <p class="card__desc">Toggle between line charts to explore how solo play, complexity, and other game features evolved.</p>
-                    <div class="graph-container">
-                    <img src="./assets/toggle-temp2.png" alt="Board Game Properties" class="small-img">   
-                    </div>
-                </div>
-            </section>
-        
-            <section id="world-tour" class="data__section">
-                <div class="flex-display">
-                    <h2 class="card__title">A World Tour of Board Games</h2>
-                    <p class="card__desc">Explore country-level trends in board game complexity and preferences with an interactive map.</p>
 
-        
-                    <div class="graph-container">
-                        <div class="world_tour_container">
-                            <div id="map"></div>
-                            <div id="country-info" class="info-panel"></div>
-                        </div>
-                    </div>
-        
-                    <div class="graph-container">
-                        <img src="./assets/complexity-map.png" alt="Complexity Map" class="small-img">
-                    </div>
+        </section>
+
+        <section id="world-tour" class="data__section">
+            <div class="flex-display">
+            <h2 class="card__title">A World Tour of Board Games</h2>
+            <p class="card__desc">Explore country-level trends in board game complexity and preferences with an interactive map.</p>
+            <div class="graph-container">
+                <div class="world_tour_container">
+                <div id="map"></div>
+                <div id="country-info" class="info-panel"></div>
                 </div>
-            </section>
-        
-            <section id="success" class="data__section">
-                <div class="flex-display">
-                    <h2 class="card__title">What Makes a Great Game?</h2>
-                    <p class="card__desc">Explore which factors correlate with highly-rated games.</p>
-                    <div class="graph-container">
-                        <img src="./assets/lol.png" alt="Lollipop Correlation Chart">
-                    </div>
-                </div>
-            </section>
-        
-        </main>        
+            </div>
+            <div class="graph-container">
+                <img src="./assets/complexity-map.png" alt="Complexity Map" class="small-img" />
+            </div>
+            </div>
+        </section>
+
+        <section id="success" class="data__section">
+            <div class="flex-display">
+            <h2 class="card__title">What Makes a Great Game?</h2>
+            <p class="card__desc">Explore which factors correlate with highly-rated games.</p>
+            <div class="graph-container">
+                <img src="./assets/lol.png" alt="Lollipop Correlation Chart" />
+            </div>
+            </div>
+        </section>
+        </main>
 
         <footer class="footer">
-            <p class="footer__text">Footer</p>
+        <p class="footer__text">Footer</p>
         </footer>
     </div>
 </body>
