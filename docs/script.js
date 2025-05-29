@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     antialias: true,
   });
 
-  fetch("../../data/top_game_by_country.json")
+  fetch("data/top_game_by_country.json")
     .then((res) => res.json())
     .then((data) => {
       // Add markers to map
@@ -69,7 +69,7 @@ const chart = async () => {
   );
   const path = d3.geoPath(projection);
 
-  const complexityData = await d3.json("../../data/complexity_by_country.json");
+  const complexityData = await d3.json("data/complexity_by_country.json");
   const valuemap = new Map(
     Object.entries(complexityData).map(([country, value]) => [
       country,
@@ -246,7 +246,7 @@ const generate_correlation = async () => {
     .attr("fill", "rgba(0, 0, 0, 0.2)")
     .lower();
 
-  d3.json("../../data/correlations.json").then((data) => {
+  d3.json("data/correlations.json").then((data) => {
     data.forEach((d) => {
       d.correlation = +d.correlation;
       d.label = featureLabels[d.feature] || d.feature;

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadFavorites(year) {
-    const filePath = `../data/games${year}_top3.json`;
+    const filePath = `data/games${year}_top3.json`;
     d3.json(filePath).then(games => {
     const container = document.getElementById("favoritesContainer");
     container.innerHTML = "";
