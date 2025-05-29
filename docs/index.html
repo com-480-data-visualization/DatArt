@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game board insights</title>
+    <title>Beyond The Board</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Caudex:wght@700&display=swap" rel="stylesheet" />
@@ -23,8 +23,8 @@
     <nav class="navbar">
         <ul class="navbar__links">
         <li><a href="#about">About</a></li>
-        <li><a href="#global-favorites">Global Favorites</a></li>
-        <li><a href="#temporal-trends">Temporal Trends</a></li>
+        <li><a href="#global-favorites">The Global Favorites</a></li>
+        <li><a href="#temporal-trends">Shifting Play</a></li>
         <li><a href="#world-tour">World Tour</a></li>
         <li><a href="#success">Successful Games</a></li>
         </ul>
@@ -38,49 +38,58 @@
             <span class="line line-2">THE</span>
             <span class="line line-3">BOARD</span>
             </h1>
-            <p class="site-header__subtitle">
-            Exploring global trends, game genres, and how play has evolved over time.
-            </p>
         </div>
         </header>
 
         <main class="main-content">
         <section id="about" class="data__section">
             <div class="flex-display">
-            <h2 class="card__title">About</h2>
-            <p class="card__desc">Exploring how board games, and the communities that play them, are evolving across time and geography.</p>
+            <section class="story-block" visible>
+                <p>From Tokyo to São Paulo, board games bring people together. But they're not just about fun — they're cultural artifacts. They show how we socialize, strategize, and connect. From strategy-heavy to fast-paced party games, the board game industry has grown explosively in recent years. But how has it evolved? What do our favorite games say about us? And how did global events like the pandemic shape the way we play?</p>
+                <p>In this project, we explore the evolution of board games in 2019, 2022, and 2025 — across genres, countries, and player behaviors — through interactive data visualizations powered by BoardGameGeek data.</p>
+            </section>
             </div>
         </section>
 
         <section id="global-favorites" class="data__section">
             <div class="section-header">
-            <h2 class="card__title">Global Favorites</h2>
-            <p class="card__desc">Discover the most popular board games for 2019, 2022, and 2025.</p>
-            <label for="yearSelector">Choose a year:</label>
+            <section class="story-block">
+                <h2>The Global Favorites</h2>
+                <p>We begin our journey with the games that left their mark around the world. In 2019, 2022, and 2025, different titles rose to the top, each reflecting how and what people played during that time.</p>
+                <p>Select a year and flip the cards to see which games stood out, and why they became favorites.</p>
+            </section>
+            <div class="selector-wrapper">
             <select id="yearSelector">
                 <option value="2019">2019</option>
                 <option value="2022">2022</option>
                 <option value="2025">2025</option>
             </select>
             </div>
+            </div>
             <div id="favoritesContainer" class="card-grid"></div>
         </section>
 
         <section id="temporal-trends" class="data__section">
             <div class="flex-display">
-                <h2 class="card__title">Temporal Trends</h2>
-                <p class="card__desc">Watch categories rise and fall between 2019 and 2025 with an animated bar chart race.</p>
+                <section class="story-block">
+                <h2>Shifting Play</h2>
+                <h3 class="subsection-title">Genre Rankings Over Time</h3>
+                <p>Now that we have seen which games stood out, let's explore how different board game categories rose and fell between 2019 and 2025. The data reveals some subtle — and surprising — shifts in player preferences.</p>
+                </section>
                 <div class="graph-container">
                     <div id="category-race"></div>
                     <div id="tooltip-categ"></div>
                 </div>
-                
+                <section class="story-block">
+                <h3 class="subsection-title">Game Design Trends</h3>
+                <p>Board games, on average, became less complex. The recommended number of players dropped. Solo play options grew — likely a response to pandemic-era isolation — while age suitability remained almost unchanged.</p>
+                <p>These trends hint at a shift toward flexibility and accessibility. Use the selector below to explore these changes year by year and see how player preferences have shaped game design over time.</p>
+                </section>
                 <div class="property-section">
                     <div class="selector-wrapper">
-                        <label for="propertySelector">Select a property:</label>
                         <select id="propertySelector">
-                        <option value="Average Weight">Average Complexity</option>
-                        <option value="Average Minimum Players">Minimum Players</option>
+                        <option value="Average Weight">Average Complexity (/5)</option>
+                        <option value="Average Minimum Players">Minimum Required # of Players</option>
                         <option value="Solo Playable (%)">Solo Playability (%)</option>
                         <option value="Average Minimum Age">Minimum Age</option>
                         </select>
@@ -97,37 +106,45 @@
 
         <section id="world-tour" class="data__section">
                 <div class="flex-display">
-                    <h2 class="card__title">A World Tour of Board Games</h2>
-                    <p class="card__desc">Explore country-level trends in board game complexity and preferences with an
-                        interactive map.</p>
-
-
-                    <div class="graph-container">
+                <section class="story-block">
+                <h2>World Tour</h2>
+                <p>Board games are a universal language, but every region speaks it a little differently. This interactive map lets you explore how board game tastes, complexity, and player preferences vary around the world.</p>
+                </section>
+                <div class="graph-container">
                         <div class="world_tour_container">
                             <div id="map"></div>
                         </div>
                     </div>
-
                 </div>
         </section>
 
-            <section class="data__section">
+        <section class="data__section">
                 <div class="flex-display">
-
-                    <div class="graph-container" id="world_heat_map">
+                    <section class="story-block">
+                    <p>Now that we've seen which countries are most active in the board game scene, let's go one level deeper: how complex are the games they tend to love?</p>
+                    </section>
+                    <div class="graph-container">
+                        <div id="world_heat_map"></div>
                     </div>
                 </div>
+        </section>
 
-            </section>
-
-            <section id="success" class="data__section">
+        <section id="success" class="data__section">
                 <div class="flex-display">
-                    <h2 class="card__title">What Makes a Great Game?</h2>
-                    <p class="card__desc">Explore which factors correlate with highly-rated games.</p>
+                    <section class="story-block">
+                    <h2>The Winning Formula</h2>
+                    <p>We've looked at favorites, trends, and regional quirks, but what makes a game stand out across the board?</p>
+                    <p>In this final section, we explore which features are most correlated with high ratings. Is it complexity? Solo play options? Shorter playtimes?</p>
+                    <p>This chart visualizes the relationship between several game attributes and their average ratings.</p>
+                    </section>
                     <div class="graph-container" id="game_correlation">
                     </div>
+                    <section class="story-block">
+                    <p> Complexity. Creativity. Connection. We've seen how these elements shape the games we love. As play patterns shift across time and borders, one truth holds steady: great games don't just entertain. They adapt, invite, and reflect the people around them. The story of board games isn't static. It's constantly being rewritten — one move at a time. </p>
+                    </section>
                 </div>
-            </section>
+        </section>
+
         </main>
 
         <footer class="footer">
