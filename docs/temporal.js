@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "Average Minimum Age": "Minimum Age"
     };
 
-    d3.csv("../../data/board_game_properties_over_time.csv").then(data => {
+    d3.csv("data/board_game_properties_over_time.csv").then(data => {
     data.forEach(d => {
         d.Year = +d.Year;
         d["Average Weight"] = +d["Average Weight"];

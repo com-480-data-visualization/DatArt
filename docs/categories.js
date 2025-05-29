@@ -1,8 +1,7 @@
 function drawBumpChart() {
-
-    d3.json(`../../data/categories_2019.json?nocache=${Date.now()}`).then(data2019 => {
-        d3.json(`../../data/categories_2022.json?nocache=${Date.now()}`).then(data2022 => {
-            d3.json(`../../data/categories_2025.json?nocache=${Date.now()}`).then(data2025 => {
+    d3.json(`data/categories_2019.json?nocache=${Date.now()}`).then(data2019 => {
+        d3.json(`data/categories_2022.json?nocache=${Date.now()}`).then(data2022 => {
+            d3.json(`data/categories_2025.json?nocache=${Date.now()}`).then(data2025 => {
 
                 const years = [2019, 2022, 2025];
                 const raw = [data2019, data2022, data2025];

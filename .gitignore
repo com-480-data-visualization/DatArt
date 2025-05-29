@@ -5,3 +5,8 @@ data/games_detailed_info2022.csv
 data/games_detailed_info2019.csv
 data/users.csv
 data/ratings.csv
+docs/data/ratings.csv
+docs/data/users.csv
+docs/data/games_detailed_2019.csv
+docs/data/games_detailed_2022.csv
+docs/data/games_detailed_2025.csv
