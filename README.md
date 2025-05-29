@@ -51,10 +51,13 @@ To our knowledge, we found no existing website or platform that provides a compr
 For inspiration, we looked at several past projects of this course. The two projects that stood out to us were [GreenAce]( https://greenace.fdumoncel.ch/) and [Formula1]( https://formula1viz.altervista.org/index.html). We were particularly drawn to their use of interactive maps, which align with the global aspect of our project. Both websites also have a gamified feel, which we plan to integrate into our own website.
 
 
-## Milestone 2 (18th April, 5pm)
+## Milestone 2 <a name="milestone-2"></a>
 
 **10% of the final grade**
 
+You can find the report [here](./milestones/milestone2/Milestone%202.pdf).
+
+You can access the skeleton website [here](https://com-480-data-visualization.github.io/DatArt/).
 
 ## Milestone 3 (30th May, 5pm)
 
