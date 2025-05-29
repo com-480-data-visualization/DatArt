@@ -12,6 +12,7 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
     <script src="script.js" defer></script>
     <script src="favorites.js" defer></script>
     <script src="temporal.js" defer></script>
@@ -73,15 +74,19 @@
                     <div id="category-race"></div>
                     <div id="tooltip-categ"></div>
                 </div>
+                
                 <div class="property-section">
-                    <label for="propertySelector">Select a property:</label>
-                    <select id="propertySelector">
-                    <option value="Average Weight">Average Complexity</option>
-                    <option value="Average Minimum Players">Minimum Players</option>
-                    <option value="Solo Playable (%)">Solo Playability (%)</option>
-                    <option value="Average Minimum Age">Minimum Age</option>
-                    </select>
-                <div id="line-chart-container">
+                    <div class="selector-wrapper">
+                        <label for="propertySelector">Select a property:</label>
+                        <select id="propertySelector">
+                        <option value="Average Weight">Average Complexity</option>
+                        <option value="Average Minimum Players">Minimum Players</option>
+                        <option value="Solo Playable (%)">Solo Playability (%)</option>
+                        <option value="Average Minimum Age">Minimum Age</option>
+                        </select>
+                    </div>
+                    </div>
+                <div class="graph-container" id="line-chart-container">
                     <svg></svg>
                 </div>
                 <div id="tooltip"></div>
@@ -91,30 +96,38 @@
         </section>
 
         <section id="world-tour" class="data__section">
-            <div class="flex-display">
-            <h2 class="card__title">A World Tour of Board Games</h2>
-            <p class="card__desc">Explore country-level trends in board game complexity and preferences with an interactive map.</p>
-            <div class="graph-container">
-                <div class="world_tour_container">
-                <div id="map"></div>
-                <div id="country-info" class="info-panel"></div>
+                <div class="flex-display">
+                    <h2 class="card__title">A World Tour of Board Games</h2>
+                    <p class="card__desc">Explore country-level trends in board game complexity and preferences with an
+                        interactive map.</p>
+
+
+                    <div class="graph-container">
+                        <div class="world_tour_container">
+                            <div id="map"></div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="graph-container">
-                <img src="./assets/complexity-map.png" alt="Complexity Map" class="small-img" />
-            </div>
-            </div>
         </section>
 
-        <section id="success" class="data__section">
-            <div class="flex-display">
-            <h2 class="card__title">What Makes a Great Game?</h2>
-            <p class="card__desc">Explore which factors correlate with highly-rated games.</p>
-            <div class="graph-container">
-                <img src="./assets/lol.png" alt="Lollipop Correlation Chart" />
-            </div>
-            </div>
-        </section>
+            <section class="data__section">
+                <div class="flex-display">
+
+                    <div class="graph-container" id="world_heat_map">
+                    </div>
+                </div>
+
+            </section>
+
+            <section id="success" class="data__section">
+                <div class="flex-display">
+                    <h2 class="card__title">What Makes a Great Game?</h2>
+                    <p class="card__desc">Explore which factors correlate with highly-rated games.</p>
+                    <div class="graph-container" id="game_correlation">
+                    </div>
+                </div>
+            </section>
         </main>
 
         <footer class="footer">

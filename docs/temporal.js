@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const margin = { top: 20, right: 40, bottom: 40, left: 90 };
-    const width = 960 - margin.left - margin.right;
+    const margin = { top: 20, right: 40, bottom: 60, left: 90 };
+    const width = 1200 - margin.left - margin.right;
     const height = 300 - margin.top - margin.bottom;
 
     const tooltip = d3.select("#tooltip");
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const xLabel = svg.append("text")
         .attr("class", "axis-label")
         .attr("x", width / 2)
-        .attr("y", height + 30)
+        .attr("y", height + 50)
         .attr("text-anchor", "middle")
         .attr("font-size", "14px")
         .text("Year");

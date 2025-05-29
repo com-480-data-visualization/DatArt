@@ -127,8 +127,10 @@ a:focus {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  width: 100%;
 }
+
 .background-wrapper::before {
   content: "";
   position: fixed;
@@ -168,7 +170,7 @@ a:focus {
   line-height: 1.6;
 }
 
-.graph-container {
+.graph-container-temp {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
@@ -177,6 +179,11 @@ a:focus {
   flex-direction: column;
   align-items: center;
 }
+
+.graph-container {
+  width: 100%;
+}
+
 .graph-box {
   width: 60%;
   height: 450px;
@@ -288,7 +295,7 @@ a:focus {
   min-height: 400px;
 }
 
-.data__section {
+.data__section-temp {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto 4rem auto;
@@ -297,6 +304,13 @@ a:focus {
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+}
+
+.data__section {
+  display: flex;
+  justify-content: center;
+  margin: 16px auto;
+  width: 70rem;
 }
 
 .info-panel {
@@ -415,12 +429,12 @@ a:focus {
   margin: 0.2rem 0;
 }
 
-#line-chart-container {
+/*#line-chart-container {
   padding: 0;
   margin-top: 0.5rem;
   padding-top: 0;
   width: 100%;
-}
+}*/
 
 #propertySelector {
   padding: 0.5rem 1rem;
@@ -432,6 +446,8 @@ a:focus {
   background-color: #fff;
   font-family: var(--font-stack);
   color: var(--text-dark);
+  width: max-content;
+  max-width: 300px;
 }
 
 svg text {
@@ -458,12 +474,18 @@ svg text {
   font-weight: 300;
 }
 
-#line-chart-container svg {
+/*#line-chart-container svg {
   width: 100%;
   max-width: 1000px;
   height: 300px;
   display: block;
   margin: 1rem auto 0 auto;
+}*/
+
+#line-chart-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 #tooltip {
@@ -621,6 +643,7 @@ label[for="propertySelector"] {
   font-family: var(--font-stack);
   transition: all 0.2s ease;
   cursor: pointer;
+  width: fit-content;
 }
 
 #propertySelector:hover {
@@ -638,5 +661,48 @@ label[for="propertySelector"] {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   gap: 0.5rem;
+
+}
+
+.marker {
+  width: 8px;
+  height: 8px;
+  background-color: #3d687f;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #3d687f;
+}
+
+.mapboxgl-popup-content {
+  background-color: rgba(0, 48, 73, 0.65) !important;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+#world_heat_map {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#world_heat_map svg {
+  width: 100%;
+  height: auto;
+  max-width: 1000px;
+  display: block;
+}
+
+.selector-wrapper {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
