@@ -18,6 +18,14 @@
 .orange__color {
   color: var(--orange);
 }
+
+@font-face {
+  font-family: 'NHL Phoenix Regular';
+  src: url('fonts/NHLPhoenix.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   font-family: var(--font-stack);
@@ -25,7 +33,6 @@ body {
   background-color: var(--navy);
 }
 
-/* Header */
 .navbar {
   background-color: var(--navy);
   padding: var(--spacing);
@@ -70,7 +77,6 @@ a:focus {
   text-decoration: none;
 }
 
-/*Navbar starts*/
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -107,19 +113,24 @@ a:focus {
 .navbar__links li a:hover {
   color: #f77f00;
 }
-/* Navbar ends*/
+
 .background-wrapper {
-  position: relative;
-  min-height: 100vh;
-  z-index: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 .flex-display {
   justify-content: center;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
+
 .background-wrapper::before {
   content: "";
   position: fixed;
@@ -127,7 +138,7 @@ a:focus {
   background-color: rgba(0, 0, 0, 0.2);
   z-index: -1;
 }
-/* Main */
+
 .main-content {
   gap: var(--spacing);
   padding: var(--spacing);
@@ -138,6 +149,9 @@ a:focus {
 .card__title {
   color: var(--orange);
   margin-bottom: 0;
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 .section-caption {
@@ -146,11 +160,24 @@ a:focus {
   margin: 0 0 1rem 0;
   font-weight: bold;
 }
+
 .card__desc {
   color: var(--text-light);
-  margin: 0;
-  max-width: 60%;
   text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.graph-container-temp {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .graph-container {
@@ -178,8 +205,6 @@ a:focus {
   margin: 1rem auto;
   display: block;
 }
-
-/* site header start */
 
 .site-header {
   position: relative;
@@ -210,8 +235,12 @@ a:focus {
 }
 
 .site-header__title {
-  font-size: 3rem;
+  font-size: 7rem;
   margin: 0 0 1rem;
+  font-family: 'NHL Phoenix', serif;
+  text-align: center;
+  margin-top: 50px;
+  line-height: 1;
 }
 
 .site-header__subtitle {
@@ -219,9 +248,29 @@ a:focus {
   line-height: 1.6;
   margin: 0;
 }
-/* site header end */
 
-/* Footer */
+.site-header__title .line {
+  display: block;
+  font-family: 'NHL Phoenix', serif;
+}
+
+.line-1 {
+  font-size: 80px;
+  color: var(--orange);
+  margin-bottom: -5px;
+}
+
+.line-2 {
+  font-size: 40px;
+  color: var(--orange);
+}
+
+.line-3 {
+  font-size: 80px;
+  color: var(--orange);
+  margin-top: -5px;
+}
+
 .footer {
   background-color: var(--navy);
   color: var(--text-light);
@@ -234,7 +283,6 @@ a:focus {
   margin: 0;
 }
 
-/* map js world tour*/
 .world_tour_container {
   display: flex;
   gap: 1rem;
@@ -243,12 +291,26 @@ a:focus {
 
 #map {
   width: 100%;
-  height: 800px;
+  height: 600px;
+  min-height: 400px;
+}
+
+.data__section-temp {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto 4rem auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .data__section {
   display: flex;
   justify-content: center;
+  margin: 16px auto;
+  width: 70rem;
 }
 
 .info-panel {
@@ -257,4 +319,390 @@ a:focus {
   border-radius: 5px;
   display: none;
   height: fit-content;
+}
+
+#global-favorites {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card-box {
+  perspective: 1000px;
+  width: 260px;
+  height: 360px;
+  overflow: hidden;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 1.2s ease-in-out;
+}
+
+.card-box.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  backface-visibility: hidden;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.3);
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--cream);
+}
+
+.card-front {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.front-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.card-back {
+  background-color: var(--cream);
+  transform: rotateY(180deg);
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-dark);
+  overflow-y: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.card-back img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0;
+  margin-bottom: 0.75rem;
+}
+
+.card-back .card-details p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+.card-title {
+  font-family: 'Caudex', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.75rem;
+  color: var(--text-dark);
+}
+
+.card-back .card-details p {
+  font-family: 'Caudex', serif;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  margin: 0.2rem 0;
+}
+
+/*#line-chart-container {
+  padding: 0;
+  margin-top: 0.5rem;
+  padding-top: 0;
+  width: 100%;
+}*/
+
+#propertySelector {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-family: var(--font-stack);
+  color: var(--text-dark);
+  width: max-content;
+  max-width: 300px;
+}
+
+svg text {
+  font-family: var(--font-stack);
+  fill: var(--text-light);
+}
+
+.axis-label {
+  fill: var(--text-light);
+  font-size: 1.25rem;
+}
+
+.x-axis path,
+.y-axis path,
+.x-axis line,
+.y-axis line {
+  stroke: #ccc;
+}
+
+.x-axis text,
+.y-axis text {
+  font-size: 1rem; 
+  fill: var(--text-light);
+  font-weight: 300;
+}
+
+/*#line-chart-container svg {
+  width: 100%;
+  max-width: 1000px;
+  height: 300px;
+  display: block;
+  margin: 1rem auto 0 auto;
+}*/
+
+#line-chart-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#tooltip {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  background: var(--text-light);
+  color: var(--text-dark);
+  padding: 0.5rem;
+  border-radius: 0px;
+  font-size: 0.85rem;
+  z-index: 1000;
+  opacity: 0.75;
+}
+
+#category-race {
+  width: 100%;
+  height: auto;
+  margin: 2rem auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#category-race svg {
+  width: 100%;
+  max-width: 1600px;
+  height: auto;
+  display: block;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+.bump-line {
+  stroke-width: 7;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, stroke-width 0.3s ease;
+}
+
+.line-group:hover .bump-line {
+  opacity: 1;
+  stroke-width: 10;
+}
+
+.bump-dot {
+  transition: r 0.2s ease, fill-opacity 0.2s ease;
+  r: 6px;
+  fill-opacity: 0.8;
+  pointer-events: all;
+  cursor: pointer;
+}
+
+.line-group:hover .bump-dot {
+  fill-opacity: 1;
+  r: 8px;
+}
+
+.line-group text {
+  font-size: 12px;
+  fill: var(--text-light);
+  pointer-events: none;
+}
+
+#category-race text {
+  font-family: var(--font-stack);
+  fill: var(--text-light);
+}
+
+#category-race .title {
+  fill: var(--text-light);
+  font-weight: 600;
+}
+
+#tooltip-categ {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  background: var(--text-light);
+  color: var(--text-dark);
+  padding: 0.5rem;
+  border-radius: 0px;
+  font-size: 0.85rem;
+  z-index: 1000;
+  opacity: 0.8;
+}
+
+.graph-container {
+  margin-bottom: 1rem;
+  padding-bottom: 0;
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+.background-wrapper,
+.data__section {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+label[for="yearSelector"] {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-right: 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+#yearSelector {
+  appearance: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: var(--cream);
+  color: var(--text-dark);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-family: var(--font-stack);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+#yearSelector:hover {
+  border-color: var(--cream);
+  box-shadow: 0 0 0 2px rgba(247, 127, 0, 0.2);
+}
+
+#yearSelector:focus {
+  outline: none;
+  border-color: var(--cream);
+  box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.3);
+}
+
+label[for="propertySelector"] {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-right: 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+#propertySelector {
+  appearance: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: var(--cream);
+  color: var(--text-dark);
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-family: var(--font-stack);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: fit-content;
+}
+
+#propertySelector:hover {
+  border-color: var(--cream);
+  box-shadow: 0 0 0 2px rgba(247, 127, 0, 0.2);
+}
+
+#propertySelector:focus {
+  outline: none;
+  border-color: var(--cream);
+  box-shadow: 0 0 0 3px rgba(247, 127, 0, 0.3);
+}
+
+.property-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 0.5rem;
+
+}
+
+.marker {
+  width: 8px;
+  height: 8px;
+  background-color: #3d687f;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #3d687f;
+}
+
+.mapboxgl-popup-content {
+  background-color: rgba(0, 48, 73, 0.65) !important;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+#world_heat_map {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#world_heat_map svg {
+  width: 100%;
+  height: auto;
+  max-width: 1000px;
+  display: block;
+}
+
+.selector-wrapper {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
