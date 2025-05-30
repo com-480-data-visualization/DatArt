@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
       data.forEach((country) => {
         new mapboxgl.Marker({
           color: "#125d83",
-          draggable: true,
         })
           .setLngLat([country.lon, country.lat])
           .setPopup(
