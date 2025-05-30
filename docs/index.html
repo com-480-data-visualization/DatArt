@@ -13,7 +13,7 @@
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://unpkg.com/topojson@3"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js?v=3" defer></script>
     <script src="favorites.js" defer></script>
     <script src="temporal.js" defer></script>
     <script src="categories.js" defer></script>
@@ -30,23 +30,41 @@
         </ul>
     </nav>
 
-    <div class="background-wrapper">
+    
         <header class="site-header">
+        <div class="floating-elements">
+            <img src="assets/orange_pawn.png" class="float-img pos1" alt="pawn_orange" />
+            <img src="assets/question.png" class="float-img pos2" alt="question" />
+            <img src="assets/time.png" class="float-img pos3" alt="time" />
+            <img src="assets/star.png" class="float-img pos4" alt="star" />
+            <img src="assets/nicer-wheel.png" class="float-img pos5" alt="wheel" />
+            <img src="assets/brick_pawn.png" class="float-img pos6" alt="pawn_brick" />
+            <img src="assets/sparkle.png" class="float-img pos7" alt="sparkle-1" />
+            <img src="assets/sparkle.png" class="float-img pos8" alt="sparkle-2" />
+            <img src="assets/sparkle.png" class="float-img pos9" alt="sparkle-3" />
+            <img src="assets/sparkle.png" class="float-img pos10" alt="sparkle-4" />
+            <img src="assets/sparkle.png" class="float-img pos11" alt="sparkle-5" />
+            <img src="assets/sparkle.png" class="float-img pos12" alt="sparkle-6" />
+            <img src="assets/sparkle.png" class="float-img pos13" alt="sparkle-7" />
+        </div>
+
         <div class="site-header__content">
             <h1 class="site-header__title">
             <span class="line line-1">BEYOND</span>
             <span class="line line-2">THE</span>
             <span class="line line-3">BOARD</span>
             </h1>
+            <button class="play-button" type="button">START</button>
         </div>
         </header>
 
         <main class="main-content">
+        <div class="background-wrapper">
         <section id="about" class="data__section">
             <div class="flex-display">
             <section class="story-block" visible>
                 <p>From Tokyo to São Paulo, board games bring people together. But they're not just about fun — they're cultural artifacts. They show how we socialize, strategize, and connect. From strategy-heavy to fast-paced party games, the board game industry has grown explosively in recent years. But how has it evolved? What do our favorite games say about us? And how did global events like the pandemic shape the way we play?</p>
-                <p>In this project, we explore the evolution of board games in 2019, 2022, and 2025 — across genres, countries, and player behaviors — through interactive data visualizations powered by BoardGameGeek data.</p>
+                <p>In this project, we explore the evolution of board games in 2019, 2022, and 2025 across genres, countries, and player behaviors through interactive data visualizations powered by BoardGameGeek data.</p>
             </section>
             </div>
         </section>
@@ -74,7 +92,7 @@
                 <section class="story-block">
                 <h2>Shifting Play</h2>
                 <h3 class="subsection-title">Genre Rankings Over Time</h3>
-                <p>Now that we have seen which games stood out, let's explore how different board game categories rose and fell between 2019 and 2025. The data reveals some subtle — and surprising — shifts in player preferences.</p>
+                <p>Now that we have seen which games stood out, let's explore how different board game categories rose and fell between 2019 and 2025. The data reveals some subtle (and surprising) shifts in player preferences.</p>
                 </section>
                 <div class="graph-container">
                     <div id="category-race"></div>
@@ -140,7 +158,7 @@
                     <div class="graph-container" id="game_correlation">
                     </div>
                     <section class="story-block">
-                    <p> Complexity & Connection: We've seen how these elements shape the games we love. As play patterns shift across time and borders, one truth holds steady: great games don't just entertain. They adapt, invite, and reflect the people around them. The story of board games isn't static. It's constantly being rewritten — one move at a time. </p>
+                    <p> Complexity & Connection: we've seen how these elements shape the games we love. As play patterns shift across time and borders, one truth holds steady: great games don't just entertain. They adapt, invite, and reflect the people around them. The story of board games isn't static. It's constantly being rewritten, one move at a time. </p>
                     </section>
                 </div>
         </section>
@@ -148,7 +166,7 @@
         </main>
 
         <footer class="footer">
-        <p class="footer__text">Footer</p>
+        <p class="footer__text">Team DatArt - EPFL 2025</p>
         </footer>
     </div>
 </body>

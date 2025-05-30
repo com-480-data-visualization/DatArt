@@ -193,7 +193,7 @@ a:focus {
 
 .site-header {
   position: relative;
-  height: 50vh;
+  height: 100vh;
   background-color: var(--navy);
   background-size: cover;
   background-position: center;
@@ -219,13 +219,34 @@ a:focus {
   text-align: center;
 }
 
-.site-header__title {
+/*.site-header__title {
   font-size: 7rem;
   margin: 0 0 1rem;
   font-family: 'NHL Phoenix', serif;
   text-align: center;
   margin-top: 50px;
   line-height: 1;
+}*/
+
+.site-header__title {
+  font-family: 'NHL Phoenix', serif;
+  font-size: 9rem;
+  color: var(--orange);
+  text-align: center;
+  line-height: 1;
+  animation: float 3s ease-in-out infinite;
+  /*text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  color: #fca82f;
+  letter-spacing: 0.05em;*/
+  color: #fca82f;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(252, 168, 47, 0.4);
+  letter-spacing: 0.05em;
+}
+
+.line {
+  display: block;
 }
 
 .site-header__subtitle {
@@ -240,20 +261,20 @@ a:focus {
 }
 
 .line-1 {
-  font-size: 80px;
+  font-size: 130px;
   color: var(--orange);
-  margin-bottom: -5px;
+  margin-bottom: -3px;
 }
 
 .line-2 {
-  font-size: 40px;
+  font-size:80px;
   color: var(--orange);
 }
 
 .line-3 {
-  font-size: 80px;
+  font-size: 130px;
   color: var(--orange);
-  margin-top: -5px;
+  margin-top: -3px;
 }
 
 .footer {
@@ -773,3 +794,98 @@ select:focus, #yearSelector:focus, #propertySelector:focus {
   border-color: var(--yellow);
   box-shadow: 0 0 12px var(--yellow);
 }
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.play-button {
+  margin-top: 2rem;
+  padding: 1.2rem 3rem;
+  font-size: 1.4rem;
+  font-family: 'NHL Phoenix', serif;
+  color: #fca82f;
+  background-color: transparent;
+  border: 2px solid #fca82f;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.play-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(252, 168, 47, 0.4), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+
+.play-button:hover::before {
+  left: 100%;
+}
+
+.play-button:hover {
+  color: #fff;
+  background-color: #fca82f;
+  box-shadow: 0 0 12px rgba(252, 168, 47, 0.6);
+}
+
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.float-img {
+  position: absolute;
+  width: 100px;
+  opacity: 0.9;
+  animation: floatAnim 5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.float-img:hover {
+  transform: scale(1.2) rotate(5deg);
+  z-index: 2;
+  opacity: 1;
+}
+
+.float-img {
+  --tilt: 0deg;
+  transform: rotate(var(--tilt));
+  animation: floatAnim 5s ease-in-out infinite;
+}
+
+@keyframes floatAnim {
+  0%   {transform: translateY(0px) rotate(var(--tilt));}
+  50%  {transform: translateY(-10px) rotate(var(--tilt));}
+  100% {transform: translateY(0px) rotate(var(--tilt));}
+}
+
+.pos1 {top: 10%; left: 5%; --tilt: -20deg; width: 120px;}
+.pos2 {top: 40%; left: 17%; --tilt: 10deg; width: 120px;}
+.pos3 {top: 12%; right: 17%; --tilt: 12deg; width: 110px;}
+.pos4 {bottom: 37%; right: 8%; --tilt: -10deg; width: 170px;}
+.pos5 {bottom: 10%; left: 10%; --tilt: -20deg; width: 190px;}
+.pos6 {bottom: 10%; right: 20%; --tilt: -10deg; width: 130px;}
+.pos7 {top: 15%; left: 20%; --tilt: -10deg; width: 60px;}
+.pos8 {bottom: 20%; left: 32%; --tilt: 5deg; width: 65px;}
+.pos9 {bottom: 17%; right: 10%; --tilt: 10deg; width: 70px;}
+.pos10 {bottom: 50%; right: 23%; --tilt: -5deg; width: 50px;}
+.pos11 {top: 20%; right: 7%; --tilt: -10deg; width: 60px;}
+.pos12 {bottom: 40%; left: 7%; --tilt: -2deg; width: 50px;}
+.pos13 {bottom: 13%; right: 32%; --tilt: -5deg; width: 55px;}

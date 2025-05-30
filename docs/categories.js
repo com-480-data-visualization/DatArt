@@ -183,14 +183,6 @@ function drawBumpChart() {
                     .style("font-size", "15px")
                     .style("fill", d => color(d.category))
                     .attr("alignment-baseline", "middle");
-
-                /*svg.append("text")
-                    .attr("x", width / 2 + margin.left)
-                    .attr("y", 20)
-                    .attr("text-anchor", "middle")
-                    .attr("fill", "#fff")
-                    .style("font-size", "20px")
-                    .text("Category Ranking Bump Chart (2019–2025)");*/
             });
         });
     });

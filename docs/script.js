@@ -1,7 +1,34 @@
 mapboxgl.accessToken =
   "pk.eyJ1IjoibGluYXlhaHlhIiwiYSI6ImNtOWluNjVlNDAwZTgya3NkdGtwcjI0NjgifQ.rXrXQE6gIL7aVFG1m4V5ww";
 
+const startButton = document.querySelector('.play-button');
+const targetSection = document.querySelector('#about');
+
+if (startButton && targetSection) {
+  startButton.addEventListener('click', () => {
+    const targetY = targetSection.getBoundingClientRect().top + window.scrollY;
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    const duration = 2000;
+    const startTime = performance.now();
+
+    function step(currentTime) {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const ease = progress < 0.5
+        ? 2 * progress * progress
+        : -1 + (4 - 2 * progress) * progress;
+      window.scrollTo(0, startY + distance * ease);
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  });
+} else {
+  console.warn('Scroll not working');
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v12",
