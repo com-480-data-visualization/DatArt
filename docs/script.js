@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add markers to map
       data.forEach((country) => {
         new mapboxgl.Marker({
-          color: "orange",
+          color: "#125d83",
           draggable: true,
         })
           .setLngLat([country.lon, country.lat])
