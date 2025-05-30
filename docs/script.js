@@ -38,14 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /////////////// world heatmap ///////////////
-const featureLabels = {
-  trading: "Trading",
-  averageweight: "Average Complexity",
-  minplaytime: "Min Playtime",
-  minplayers: "Min Players",
-};
 
-const chart = async () => {
+const generateComplexityHeatMapChart = async () => {
   const width = 928;
   const marginTop = 46;
   const height = width / 2 + marginTop;
@@ -99,12 +93,7 @@ const chart = async () => {
     .append("rect")
     .attr("width", width)
     .attr("height", height)
-    .attr("fill", "var(--navy)");
-
-  svg
-    .append("rect")
-    .attr("width", width)
-    .attr("height", height)
+    .attr("fill", "var(--navy)")
     .attr("fill", "rgba(0, 0, 0, 0.2)");
 
   svg
@@ -116,14 +105,37 @@ const chart = async () => {
       const val = valuemap.get(d.properties.name);
       return val != null ? color(val) : "#f7ecdc";
     })
-    .attr("d", path)
-    .append("title")
-    .text((d) => {
+    .attr("d", path);
+
+  const tooltip = d3.select("#tooltip");
+
+  // Draw countries with tooltip handlers
+  svg
+    .append("g")
+    .selectAll("path")
+    .data(countries.features.filter((d) => d.properties.name !== "Antarctica"))
+    .join("path")
+    .attr("fill", (d) => {
       const val = valuemap.get(d.properties.name);
-      return `${d.properties.name}\n${
-        val != null ? val.toFixed(2) : "No data"
-      }`;
-    });
+      return val != null ? color(val) : "#f7ecdc";
+    })
+    .attr("d", path)
+    .on("mouseover", (event, d) => {
+      const val = valuemap.get(d.properties.name);
+      tooltip
+        .style("display", "block")
+        .html(
+          `<strong>${d.properties.name}</strong><br>Average Complexity: ${
+            val != null ? val.toFixed(2) : "No data"
+          }`
+        );
+    })
+    .on("mousemove", (event) => {
+      tooltip
+        .style("left", event.pageX + 10 + "px")
+        .style("top", event.pageY - 28 + "px");
+    })
+    .on("mouseout", () => tooltip.style("display", "none"));
 
   svg
     .append("path")
@@ -140,13 +152,6 @@ const chart = async () => {
   const linearGradient = defs
     .append("linearGradient")
     .attr("id", "legend-gradient");
-
-  linearGradient
-    .selectAll("stop")
-    .data(d3.ticks(0, 1, 10))
-    .join("stop")
-    .attr("offset", (d) => `${d * 100}%`)
-    .attr("stop-color", (d) => color(min + d * (max - min)));
 
   linearGradient
     .selectAll("stop")
@@ -194,12 +199,17 @@ const chart = async () => {
   return svg.node();
 };
 
-chart().then((svg) => {
+generateComplexityHeatMapChart().then((svg) => {
   document.getElementById("world_heat_map").appendChild(svg);
 });
 
 ////////////// correlations ////////////////
-
+const featureLabels = {
+  trading: "Trading",
+  averageweight: "Average Complexity",
+  minplaytime: "Min Playtime",
+  minplayers: "Min Players",
+};
 const generate_correlation = async () => {
   const margin = { top: 40, right: 30, bottom: 80, left: 50 };
   const width = 928 - margin.left - margin.right;
@@ -229,20 +239,6 @@ const generate_correlation = async () => {
     .attr("y", 0)
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .attr("fill", "var(--navy)")
-    .lower();
-  svg
-    .append("rect")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .attr("fill", "rgba(0, 0, 0, 0.2)");
-
-  svg
-    .append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
     .attr("fill", "rgba(0, 0, 0, 0.2)")
     .lower();
 
@@ -259,6 +255,34 @@ const generate_correlation = async () => {
       .padding(0.4);
 
     const y = d3.scaleLinear().domain([-1, 1]).range([height, 0]);
+
+    const tooltip = d3.select("#tooltip");
+
+    g.selectAll("circle")
+      .data(data)
+      .enter()
+      .append("circle")
+      .attr("cx", (d) => x(d.label) + x.bandwidth() / 2)
+      .attr("cy", (d) => y(d.correlation))
+      .attr("r", 5)
+      .attr("fill", "var(--cream)")
+      .attr("stroke", "var(--orange)")
+      .attr("stroke-width", 2)
+      .on("mouseover", (event, d) => {
+        tooltip
+          .style("display", "block")
+          .html(
+            `<strong>${
+              d.label
+            }</strong><br>Correlation: ${d.correlation.toFixed(2)}`
+          );
+      })
+      .on("mousemove", (event) => {
+        tooltip
+          .style("left", event.pageX + 10 + "px")
+          .style("top", event.pageY - 20 + "px");
+      })
+      .on("mouseout", () => tooltip.style("display", "none"));
 
     g.append("line")
       .attr("x1", 0)
@@ -291,17 +315,6 @@ const generate_correlation = async () => {
       .attr("x2", (d) => x(d.label) + x.bandwidth() / 2)
       .attr("y1", y(0))
       .attr("y2", (d) => y(d.correlation))
-      .attr("stroke", "var(--orange)")
-      .attr("stroke-width", 2);
-
-    g.selectAll("circle")
-      .data(data)
-      .enter()
-      .append("circle")
-      .attr("cx", (d) => x(d.label) + x.bandwidth() / 2)
-      .attr("cy", (d) => y(d.correlation))
-      .attr("r", 5)
-      .attr("fill", "var(--cream)")
       .attr("stroke", "var(--orange)")
       .attr("stroke-width", 2);
 
