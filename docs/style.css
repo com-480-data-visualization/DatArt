@@ -346,6 +346,7 @@ a:focus {
   width: 285px;
   height: 395px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card-inner {

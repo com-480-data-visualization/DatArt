@@ -1,11 +1,11 @@
 mapboxgl.accessToken =
   "pk.eyJ1IjoibGluYXlhaHlhIiwiYSI6ImNtOWluNjVlNDAwZTgya3NkdGtwcjI0NjgifQ.rXrXQE6gIL7aVFG1m4V5ww";
 
-const startButton = document.querySelector('.play-button');
-const targetSection = document.querySelector('#about');
+const startButton = document.querySelector(".play-button");
+const targetSection = document.querySelector("#about");
 
 if (startButton && targetSection) {
-  startButton.addEventListener('click', () => {
+  startButton.addEventListener("click", () => {
     const targetY = targetSection.getBoundingClientRect().top + window.scrollY;
     const startY = window.scrollY;
     const distance = targetY - startY;
@@ -14,9 +14,10 @@ if (startButton && targetSection) {
 
     function step(currentTime) {
       const progress = Math.min((currentTime - startTime) / duration, 1);
-      const ease = progress < 0.5
-        ? 2 * progress * progress
-        : -1 + (4 - 2 * progress) * progress;
+      const ease =
+        progress < 0.5
+          ? 2 * progress * progress
+          : -1 + (4 - 2 * progress) * progress;
       window.scrollTo(0, startY + distance * ease);
       if (progress < 1) requestAnimationFrame(step);
     }
@@ -24,11 +25,10 @@ if (startButton && targetSection) {
     requestAnimationFrame(step);
   });
 } else {
-  console.warn('Scroll not working');
+  console.warn("Scroll not working");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
   const map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/mapbox/streets-v12",
@@ -110,18 +110,13 @@ const generateComplexityHeatMapChart = async () => {
   const svg = d3
     .create("svg")
     .attr("height", height)
-    .attr("viewBox", [0, 0, width, height])
-    .attr(
-      "style",
-      "width: 100%; height: auto; display: block; margin: auto; background-color: var(--navy);"
-    );
+    .attr("viewBox", [0, 0, width, height]);
 
   svg
     .append("rect")
     .attr("width", width)
     .attr("height", height)
-    .attr("fill", "var(--navy)")
-    .attr("fill", "rgba(0, 0, 0, 0.2)");
+    .attr("fill", "var(--navy)");
 
   svg
     .append("g")
@@ -237,7 +232,8 @@ const featureLabels = {
   minplaytime: "Min Playtime",
   minplayers: "Min Players",
 };
-const generate_correlation = async () => {
+
+const generateCorrelation = async () => {
   const margin = { top: 40, right: 30, bottom: 80, left: 50 };
   const width = 928 - margin.left - margin.right;
   const height = 500 - margin.top - margin.bottom;
@@ -245,10 +241,6 @@ const generate_correlation = async () => {
   const svg = d3
     .create("svg")
     .attr("height", height + margin.top + margin.bottom)
-    .attr(
-      "style",
-      "width: 100%; height: auto; display: block; margin: auto; background-color: var(--navy);"
-    )
     .attr("viewBox", [
       0,
       0,
@@ -256,111 +248,125 @@ const generate_correlation = async () => {
       height + margin.top + margin.bottom,
     ]);
 
-  const g = svg
-    .append("g")
-    .attr("transform", `translate(${margin.left},${margin.top})`);
-
+  // Background
   svg
     .append("rect")
     .attr("x", 0)
     .attr("y", 0)
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .attr("fill", "rgba(0, 0, 0, 0.2)")
+    .attr("fill", "var(--navy)")
     .lower();
 
-  d3.json("data/correlations.json").then((data) => {
-    data.forEach((d) => {
-      d.correlation = +d.correlation;
-      d.label = featureLabels[d.feature] || d.feature;
-    });
+  const g = svg
+    .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const x = d3
-      .scaleBand()
-      .domain(data.map((d) => d.label))
-      .range([0, width])
-      .padding(0.4);
+  const tooltip = d3.select("#tooltip");
 
-    const y = d3.scaleLinear().domain([-1, 1]).range([height, 0]);
+  const data = await d3.json("data/correlations.json");
+  data.forEach((d) => {
+    d.correlation = +d.correlation;
+    d.label = featureLabels[d.feature] || d.feature;
+  });
 
-    const tooltip = d3.select("#tooltip");
+  const x = d3
+    .scaleBand()
+    .domain(data.map((d) => d.label))
+    .range([0, width])
+    .padding(0.4);
 
-    g.selectAll("circle")
-      .data(data)
-      .enter()
-      .append("circle")
-      .attr("cx", (d) => x(d.label) + x.bandwidth() / 2)
-      .attr("cy", (d) => y(d.correlation))
-      .attr("r", 5)
-      .attr("fill", "var(--cream)")
-      .attr("stroke", "var(--orange)")
-      .attr("stroke-width", 2)
-      .on("mouseover", (event, d) => {
-        tooltip
-          .style("display", "block")
-          .html(
-            `<strong>${
-              d.label
-            }</strong><br>Correlation: ${d.correlation.toFixed(2)}`
-          );
-      })
-      .on("mousemove", (event) => {
-        tooltip
-          .style("left", event.pageX + 10 + "px")
-          .style("top", event.pageY - 20 + "px");
-      })
-      .on("mouseout", () => tooltip.style("display", "none"));
+  const y = d3.scaleLinear().domain([-1, 1]).range([height, 0]);
 
-    g.append("line")
-      .attr("x1", 0)
-      .attr("x2", width)
-      .attr("y1", y(0))
-      .attr("y2", y(0))
-      .attr("stroke", "#999")
-      .attr("stroke-width", 1)
-      .attr("stroke-dasharray", "3,2");
-
-    g.append("g")
-      .attr("transform", `translate(0, ${height})`)
+  // Axis generators
+  const xAxis = (g) => {
+    g
       .call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "rotate(-40)")
       .style("text-anchor", "end")
-      .style("fill", "var(--text-light)");
+      .style("fill", "#fff");
 
-    g.append("g")
-      .call(d3.axisLeft(y))
-      .selectAll("text")
-      .style("fill", "var(--text-light)");
+    g.selectAll("line").attr("stroke", "#fff");
+    g.selectAll("path").attr("stroke", "#fff");
+  };
 
-    g.selectAll("line.stem")
-      .data(data)
-      .enter()
-      .append("line")
-      .attr("class", "stem")
-      .attr("x1", (d) => x(d.label) + x.bandwidth() / 2)
-      .attr("x2", (d) => x(d.label) + x.bandwidth() / 2)
-      .attr("y1", y(0))
-      .attr("y2", (d) => y(d.correlation))
-      .attr("stroke", "var(--orange)")
-      .attr("stroke-width", 2);
+  const yAxis = (g) => {
+    g.call(d3.axisLeft(y)).selectAll("text").style("fill", "#fff");
+    g.selectAll("line").attr("stroke", "#fff");
+    g.selectAll("path").attr("stroke", "#fff");
+  };
 
-    svg
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("x", -height / 2 - margin.top)
-      .attr("y", 15)
-      .attr("text-anchor", "middle")
-      .attr("class", "axis-label")
-      .attr("fill", "var(--text-light)")
-      .text("correlation");
-  });
+  // Draw x-axis and y-axis
+  g.append("g").attr("transform", `translate(0, ${height})`).call(xAxis);
+  g.append("g").call(yAxis);
+
+  // Zero line
+  g.append("line")
+    .attr("x1", 0)
+    .attr("x2", width)
+    .attr("y1", y(0))
+    .attr("y2", y(0))
+    .attr("stroke", "#999")
+    .attr("stroke-width", 1)
+    .attr("stroke-dasharray", "3,2");
+
+  // Stems
+  g.selectAll("line.stem")
+    .data(data)
+    .enter()
+    .append("line")
+    .attr("class", "stem")
+    .attr("x1", (d) => x(d.label) + x.bandwidth() / 2)
+    .attr("x2", (d) => x(d.label) + x.bandwidth() / 2)
+    .attr("y1", y(0))
+    .attr("y2", (d) => y(d.correlation))
+    .attr("stroke", "var(--orange)")
+    .attr("stroke-width", 2);
+
+  // Circles
+  g.selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", (d) => x(d.label) + x.bandwidth() / 2)
+    .attr("cy", (d) => y(d.correlation))
+    .attr("r", 5)
+    .attr("fill", "var(--cream)")
+    .attr("stroke", "var(--orange)")
+    .attr("stroke-width", 2)
+    .on("mouseover", (event, d) => {
+      tooltip
+        .style("display", "block")
+        .html(
+          `<strong>${d.label}</strong><br>Correlation: ${d.correlation.toFixed(
+            2
+          )}`
+        );
+    })
+    .on("mousemove", (event) => {
+      tooltip
+        .style("left", event.pageX + 10 + "px")
+        .style("top", event.pageY - 20 + "px");
+    })
+    .on("mouseout", () => tooltip.style("display", "none"));
+
+  // Y-axis label
+  svg
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -height / 2 - margin.top)
+    .attr("y", 15)
+    .attr("text-anchor", "middle")
+    .attr("class", "axis-label")
+    .attr("fill", "var(--text-light)")
+    .text("correlation");
 
   return svg.node();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  generate_correlation().then((svg) => {
+  generateCorrelation().then((svg) => {
     document.getElementById("game_correlation").appendChild(svg);
   });
 });
