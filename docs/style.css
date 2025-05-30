@@ -219,15 +219,6 @@ a:focus {
   text-align: center;
 }
 
-/*.site-header__title {
-  font-size: 7rem;
-  margin: 0 0 1rem;
-  font-family: 'NHL Phoenix', serif;
-  text-align: center;
-  margin-top: 50px;
-  line-height: 1;
-}*/
-
 .site-header__title {
   font-family: "NHL Phoenix", serif;
   font-size: 9rem;
@@ -235,9 +226,6 @@ a:focus {
   text-align: center;
   line-height: 1;
   animation: float 2s ease-in-out infinite;
-  /*text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-  color: #fca82f;
-  letter-spacing: 0.05em;*/
   color: #fca82f;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0 10px rgba(252, 168, 47, 0.4);
   letter-spacing: 0.05em;
@@ -431,13 +419,6 @@ a:focus {
   margin: 0.2rem 0;
 }
 
-/*#line-chart-container {
-  padding: 0;
-  margin-top: 0.5rem;
-  padding-top: 0;
-  width: 100%;
-}*/
-
 #propertySelector {
   padding: 0.5rem 1rem;
   font-size: 1rem;
@@ -475,14 +456,6 @@ svg text {
   fill: var(--text-light);
   font-weight: 300;
 }
-
-/*#line-chart-container svg {
-  width: 100%;
-  max-width: 1000px;
-  height: 300px;
-  display: block;
-  margin: 1rem auto 0 auto;
-}*/
 
 #line-chart-container svg {
   width: 100%;
