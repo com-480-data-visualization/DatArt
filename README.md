@@ -5,9 +5,9 @@
 |Fawzia Zeitoun|377613|
 |Lina Obaid|382533|
 
-You can find screencast [here](https://drive.google.com/drive/folders/1cBu66tuDmennujW_vgWd_hIo0sJuPwI4?usp=sharing).
-
 You can access website [here](https://com-480-data-visualization.github.io/DatArt/)
+
+You can find the screencast [here](https://drive.google.com/drive/folders/1cBu66tuDmennujW_vgWd_hIo0sJuPwI4?usp=sharing).
 
 You can see the process book [here](./milestones/milestone3/Milestone%203%20Process%20Book.pdf)
 
