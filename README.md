@@ -60,8 +60,8 @@ You can find the report [here](./milestones/milestone2/Milestone%202.pdf).
 You can access the skeleton website [here](https://com-480-data-visualization.github.io/DatArt/).
 
 ## Milestone 3 (30th May, 5pm)
-
 **80% of the final grade**
+You can find screencast [here](https://drive.google.com/drive/folders/1cBu66tuDmennujW_vgWd_hIo0sJuPwI4?usp=sharing).
 
 
 ## Late policy
