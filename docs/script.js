@@ -40,15 +40,24 @@ document.addEventListener("DOMContentLoaded", () => {
     antialias: true,
   });
 
+  map.on("style.load", () => {
+    map.setFog({
+      color: "#f77f00",
+      "horizon-blend": 0,
+      "star-intensity": 0.1,
+      "space-color": "#003049",
+    });
+  });
+
   fetch("data/top_game_by_country.json")
     .then((res) => res.json())
     .then((data) => {
       // Add markers to map
       data.forEach((country) => {
-        const el = document.createElement("div");
-        el.className = "marker";
-
-        new mapboxgl.Marker(el)
+        new mapboxgl.Marker({
+          color: "orange",
+          draggable: true,
+        })
           .setLngLat([country.lon, country.lat])
           .setPopup(
             new mapboxgl.Popup({ offset: 10 }).setHTML(`
@@ -280,8 +289,7 @@ const generateCorrelation = async () => {
 
   // Axis generators
   const xAxis = (g) => {
-    g
-      .call(d3.axisBottom(x))
+    g.call(d3.axisBottom(x))
       .selectAll("text")
       .attr("transform", "rotate(-40)")
       .style("text-anchor", "end")
