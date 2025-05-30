@@ -1,11 +1,18 @@
-# Project of Data Visualization (COM-480)
+# Beyond The Board
 
 | Student's name | SCIPER |
 | -------------- | ------ |
 |Fawzia Zeitoun|377613|
 |Lina Obaid|382533|
 
-[Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
+You can find screencast [here](https://drive.google.com/drive/folders/1cBu66tuDmennujW_vgWd_hIo0sJuPwI4?usp=sharing).
+
+You can access website [here](https://com-480-data-visualization.github.io/DatArt/)
+
+You can see the process book [here](./milestones/milestone3/Milestone%202.pdf)
+
+Previous milestones:
+[Milestone 1](#milestone-1) • [Milestone 2](#milestone-2)
 
 ## Milestone 1 <a name="milestone-1"></a>
 
@@ -58,17 +65,4 @@ For inspiration, we looked at several past projects of this course. The two proj
 You can find the report [here](./milestones/milestone2/Milestone%202.pdf).
 
 You can access the skeleton website [here](https://com-480-data-visualization.github.io/DatArt/).
-
-## Milestone 3 (30th May, 5pm)
-**80% of the final grade**
-
-You can find screencast [here](https://drive.google.com/drive/folders/1cBu66tuDmennujW_vgWd_hIo0sJuPwI4?usp=sharing).
-
-You can access website [here](https://com-480-data-visualization.github.io/DatArt/)
-
-
-## Late policy
-
-- < 24h: 80% of the grade for the milestone
-- < 48h: 70% of the grade for the milestone
 
