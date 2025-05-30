@@ -42,11 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   map.on("style.load", () => {
     map.setFog({
-      color: "#f77f00",
-      "horizon-blend": 0,
-      "star-intensity": 0.1,
-      "space-color": "#003049",
-    });
+      'range': [-1, 2],
+      'horizon-blend': 0.05,
+      'color': 'white',
+      'high-color': '#f77f00',
+      'space-color': '#003049',
+      'star-intensity': 0.1
+  });
   });
 
   fetch("data/top_game_by_country.json")
