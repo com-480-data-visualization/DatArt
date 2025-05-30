@@ -234,7 +234,7 @@ a:focus {
   color: var(--orange);
   text-align: center;
   line-height: 1;
-  animation: float 3s ease-in-out infinite;
+  animation: float 2s ease-in-out infinite;
   /*text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   color: #fca82f;
   letter-spacing: 0.05em;*/

@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <h3>${country.country}</h3>
               <p><strong>Top Games:</strong> ${country.top_games.join(", ")}</p>
               <p><strong>Complexity:</strong> ${country.complexity}</p>
-              <p><strong>Reviews:</strong> ${country.reviews}</p>
+              <p><strong># of Reviews:</strong> ${country.reviews}</p>
               `)
           )
           .addTo(map);
